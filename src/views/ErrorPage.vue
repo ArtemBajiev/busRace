@@ -49,18 +49,6 @@ body
 {
     font-size: 400px;
 }
-.but-go
-{
-    max-width: 350px;
-    width: 100%;
-    height: 50px;
-    background-color: var(--blue);
-    border-radius: 30px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    margin-top: 40px;
-}
 @media (max-width: 740px)
 {
 .background h2

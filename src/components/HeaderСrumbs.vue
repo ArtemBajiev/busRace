@@ -96,11 +96,6 @@ export default {
   box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
   margin-bottom: 20px;
 }
-.container {
-  max-width: 1044px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
 .more-detail-block {
   display: flex;
   justify-content: space-between;

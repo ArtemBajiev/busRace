@@ -3,7 +3,7 @@
 <template>
 <div class="background-close" @click="$emit('CloseWindow')"></div>
 <div class="popup-container">
-    <div class="closeWindow" @click="$emit('CloseWindow')">✖</div>
+    <div class="closeWindow" @click="$emit('CloseWindow')"><div class="the-cross">+</div></div>
     <Seat v-if="this.content==1"></Seat>
     <div v-if="this.content==2">{{ UserAgreement }}</div>
 </div>
@@ -41,6 +41,12 @@ export default
     max-height: 80vh;
     overflow: auto;
 }
+.the-cross
+{
+  display: inline-block;
+  transform: rotate(45deg) scale(3);
+
+}
 .popup-container::-webkit-scrollbar {
   width: 0;
 }
@@ -50,6 +56,8 @@ export default
     color: var(--blue);
     position: relative;
     text-align: end;
+    position: sticky;
+  top: 0px;
 }
 .background-close
 {

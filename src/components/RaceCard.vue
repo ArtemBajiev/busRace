@@ -1,6 +1,5 @@
 <!-- eslint-disable -->
 <template>
-   <div class="container">
   <div class="menu__ticket">
     <div class="menu__ticket-up">
       <div class="ticket-up__left">
@@ -48,9 +47,9 @@
             <p>{{ race.price }}</p>
             <p>руб</p>
           </div>
-          <div class="right-ins__right">
+          <div class="right-ins__right" v-if="butS()">
             <div class="right-ins__right-button">
-              <button class="buy__but">
+              <button class="buy__but" >
                 <div class="pc__but">Выбрать</div>
                 <div class="mobil__but">
                   <p>{{ race.price }}</p>
@@ -63,7 +62,8 @@
         </div>
       </div>
     </div>
-    <div class="menu__ticket-medium">
+    <div class="menu__ticket__all">
+      <div class="menu__ticket-medium">
       <div class="ticket-medium__ins">
         <div class="ticket-medium__ins-left">
           <button class="race__details__but" @click="race.details_menu = !race.details_menu">
@@ -73,6 +73,8 @@
           <p>Автобус: Мерседес_20м</p>
         </div>
       </div>
+      </div>
+      <div class=""></div>
     </div>
     <div class="menu__ticket-low" v-if="race.details_menu">
       <div class="ticket-low__ins">
@@ -154,7 +156,6 @@
       </div>
     </div>
   </div>
-</div>
 </template>
 <style>
 /* @import url('https://fonts.gstatic.com'); */
@@ -193,15 +194,6 @@ button {
   text-decoration: none;
   cursor: pointer;
   border: 1px solid transparent;
-}
-
-.container {
-  width: 100%;
-  max-width: 1044px !important;
-  padding-right: 32px;
-  padding-left: 32px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 /* Menu */
@@ -276,7 +268,7 @@ button {
 }
 
 .left-ins__left {
-  padding-right: 20px;
+  padding-right: 10px;
   max-width: 360px;
   width: 100%;
 }
@@ -1011,8 +1003,13 @@ import DepartureArrival from './DepartureArrival.vue';
 import TicketLow from './TicketLow.vue';
 
 export default {
+  props: ['buttonStatus'],
   components: { DepartureArrival, TicketLow },
-
+  methods: {
+    butS() {
+      return this.buttonStatus;
+    },
+  },
   data() {
     return {
       race: {
@@ -1052,7 +1049,7 @@ export default {
         },
         fromCache: true,
         section: 'route',
-        details_menu: true,
+        details_menu: false,
         dispatchDay: '11 апр.',
         arrivalDay: '11 апр.',
         dispatchTime: '11:40',

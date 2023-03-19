@@ -170,10 +170,12 @@
       <button class="pay-but">Перейти к оплате</button>
     </form>
     </div>
+    <Transition name="bounce">
+      <div v-if="openWindow" class="popup-anim-container">
+        <PopupWindow  @CloseWindow="openWindow = false, Scroll()" :content="content" />
+      </div>
+    </Transition>
   </div>
-  <Transition name="fade">
-    <PopupWindow v-if="openWindow" @CloseWindow="openWindow = false, Scroll()" :content="content" />
-  </Transition>
 </template>
 <script>
 import HeaderСrumbsVue from '../components/HeaderСrumbs.vue';
@@ -202,15 +204,24 @@ export default
 };
 </script>
 <style>
-.fade-enter-active,
-.fade-leave-active {
-  transition: all 1s ease !important;
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.fade-enter-from,
-.fade-leave-to {
-  transform: scale(0)!important;
-}
 :root{
   --blue: #2196F3;
 }
@@ -346,11 +357,7 @@ label
   top: -1px;
   transform: scaleY(1.2);
 }
-.container{
-  max-width: 1044px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+
 .form__all-input
 {
   display: flex;
@@ -395,6 +402,13 @@ label
   border: 1px solid var(--blue);
   color: var(--blue);
   background-color: #fff;
+  transition: border-color 1s ease;
+  transition: box-shadow 1s ease;
+}
+.seat-bus__but:hover
+{
+  border-color: var(--gray);
+  box-shadow: 0 2px 4px rgb(0 0 0 / 15%);
 }
 .maestro__logo
 {
